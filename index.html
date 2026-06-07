@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Inter', sans-serif; background:#fff; color:#111; }
+body { font-family:'Inter', sans-serif; background:#fff; color:#111; -webkit-text-size-adjust: 100%; }
 
 /* GESTIONE MULTILINGUA VIA CSS */
 body.lang-en .lang-it { display: none !important; }
@@ -17,7 +17,7 @@ body:not(.lang-en) .lang-en { display: none !important; }
 
 nav {
   display:flex; align-items:center; justify-content:space-between;
-  padding:18px 40px; border-bottom:1px solid #eee;
+  padding:18px 40px; border-bottom:1px solid #eee; gap: 20px;
 }
 .logo { font-size:20px; font-weight:900; letter-spacing:-0.5px; color:#111; display:flex; align-items:center; gap:8px; text-decoration:none; }
 .logo-dot { width:8px; height:8px; background:#ff0040; border-radius:50%; }
@@ -26,7 +26,7 @@ nav {
 .nav-links a.active { color:#111; font-weight:600; }
 .nav-lang { font-size:12px; color:#111; font-weight:600; display:flex; align-items:center; gap:4px; text-decoration:none; border:1px solid #eee; padding:4px 10px; border-radius:6px; background:none; cursor:pointer; }
 .nav-lang:hover { background:#f9f9f9; }
-.nav-pill { background:#111; color:#fff; font-size:13px; font-weight:600; padding:8px 20px; border-radius:100px; border:none; cursor:pointer; }
+.nav-pill { background:#111; color:#fff; font-size:13px; font-weight:600; padding:8px 20px; border-radius:100px; border:none; cursor:pointer; white-space: nowrap; }
 
 .hero {
   padding:64px 40px 56px;
@@ -47,8 +47,8 @@ nav {
 .hero h1 .red { color:#ff0040; }
 .hero h1 .blue { color:#5360fe; }
 .hero-sub { font-size:15px; color:#666; line-height:1.6; margin-bottom:32px; }
-.hero-btns { display:flex; gap:12px; align-items:center; }
-.btn-main { background:#111; color:#fff; font-weight:700; font-size:14px; padding:13px 28px; border-radius:100px; border:none; cursor:pointer; display:flex; align-items:center; gap:8px; }
+.hero-btns { display:flex; gap:12px; align-items:center; flex-wrap: wrap; }
+.btn-main { background:#111; color:#fff; font-weight:700; font-size:14px; padding:13px 28px; border-radius:100px; border:none; cursor:pointer; display:flex; align-items:center; gap:8px; white-space: nowrap; }
 
 .hero-visual { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .city-card {
@@ -89,13 +89,13 @@ nav {
 .feat p { font-size:13px; color:#888; line-height:1.6; }
 
 .cities-section { padding:60px 40px; }
-.sec-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:32px; }
-.sec-header h2 { font-size:28px; font-weight:900; letter-spacing:-1px; }
+.sec-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:32px; gap: 20px; }
+.sec-header h2 { font-size:28px; font-weight:900; letter-spacing:-1px; line-height:1.2; }
 .sec-header h2 span { color:#ff0040; }
-.see-all { font-size:13px; color:#5360fe; font-weight:600; text-decoration:none; cursor:pointer; display:flex; align-items:center; gap:4px; }
+.see-all { font-size:13px; color:#5360fe; font-weight:600; text-decoration:none; cursor:pointer; display:flex; align-items:center; gap:4px; white-space: nowrap; }
 
 .cities-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
-.event-card { border-radius:18px; overflow:hidden; border:1px solid #f0f0f0; display:flex; flex-direction:column; }
+.event-card { border-radius:18px; overflow:visible; border:1px solid #f0f0f0; display:flex; flex-direction:column; position: relative; }
 .event-top { padding:20px 18px 16px; flex:1; }
 .event-city-badge {
   display:inline-flex; align-items:center; gap:5px;
@@ -112,7 +112,8 @@ nav {
   padding:12px 18px; border-top:1px solid #f0f0f0;
   display:flex; justify-content:space-between; align-items:center;
   cursor: pointer;
-}.event-date { font-size:11px; color:#aaa; }
+}
+.event-date { font-size:11px; color:#aaa; }
 .event-arrow { width:26px; height:26px; background:#111; border-radius:50%; display:flex; align-items:center; justify-content:center; }
 .event-arrow i { font-size:13px; color:#fff; }
 
@@ -140,10 +141,8 @@ nav {
 .footer-bar {
   display:flex; justify-content:space-between; align-items:center;
   padding:20px 40px; border-top:1px solid #eee;
-  font-size:12px; color:#bbb;
+  font-size:12px; color:#bbb; gap: 20px;
 }
-
-.event-card { position: relative; overflow: visible; }
 
 .event-hover-img {
   position: fixed;
@@ -157,6 +156,84 @@ nav {
 }
 .event-hover-img img {
   width: 100%; height: 100%; object-fit: cover;
+}
+
+/* ==========================================
+   MEDIA QUERIES PER LAYOUT RESPONSIVE (MOBILE)
+   ========================================== */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+  }
+  .nav-links {
+    gap: 20px;
+  }
+  
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+    gap: 32px;
+  }
+  .hero h1 {
+    font-size: 44px;
+    letter-spacing: -2px;
+  }
+  .hero-btns {
+    justify-content: center;
+  }
+  .hero-visual {
+    gap: 8px;
+  }
+  
+  .ticker-bar {
+    padding: 12px 20px;
+  }
+  
+  .features {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+  .feat {
+    padding: 28px 20px;
+  }
+  
+  .cities-section {
+    padding: 40px 20px;
+  }
+  .sec-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .cities-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  /* Disattiva anteprime fluttuanti immagini su mobile (nessun cursore mouse) */
+  .event-hover-img {
+    display: none !important;
+  }
+  
+  .cta-section {
+    margin: 0 20px 40px;
+    padding: 40px 24px;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .cta-left h2 {
+    font-size: 28px;
+  }
+  
+  .footer-bar {
+    flex-direction: column;
+    padding: 24px 20px;
+    text-align: center;
+    gap: 12px;
+  }
 }
 </style>
 </head>
@@ -308,8 +385,8 @@ nav {
     <div class="event-card">
       <div class="event-top">
         <div class="event-city-badge badge-milan"><i class="ti ti-map-pin" style="font-size:10px" aria-hidden="true"></i>Milano</div>
-        <div class="event-title class="lang-it"">Distretti del Fuorisalone</div>
-        <div class="event-title class="lang-en"">Fuorisalone Districts</div>
+        <div class="event-title lang-it">Distretti del Fuorisalone</div>
+        <div class="event-title lang-en">Fuorisalone Districts</div>
         <p class="event-desc lang-it">Usa il passaporto integrato per sbloccare l'itinerario ed evitare la dispersione tra le installazioni principali.</p>
         <p class="event-desc lang-en">Use the integrated passport to unlock your itinerary and avoid dispersion among the main installations.</p>
       </div>
@@ -370,7 +447,7 @@ nav {
   </div>
 </div>
 
-<div class="cta-section" style="margin-top:60px;">
+<div class="cta-section">
   <div class="cta-left">
     <h2 class="lang-it">11 Città chiave.<br>Un'unica grande mappa.<br><em>Nessun rinvio ad altre app.</em></h2>
     <h2 class="lang-en">11 Key Cities.<br>One Big Map.<br><em>No redirection to other apps.</em></h2>
@@ -381,16 +458,16 @@ nav {
     <div class="store-btn" onclick="window.open('https://apps.apple.com','_blank')">
       <i class="ti ti-brand-apple" aria-hidden="true"></i>
       <div class="store-text">
-        <div class="small class="lang-it"">Scarica su</div>
-        <div class="small class="lang-en"">Download on the</div>
+        <div class="small lang-it">Scarica su</div>
+        <div class="small lang-en">Download on the</div>
         <div class="big">App Store</div>
       </div>
     </div>
     <div class="store-btn lime" onclick="window.open('https://play.google.com/store','_blank')">
       <i class="ti ti-brand-google-play" aria-hidden="true"></i>
       <div class="store-text">
-        <div class="small class="lang-it"">Disponibile su</div>
-        <div class="small class="lang-en"">Get it on</div>
+        <div class="small lang-it">Disponibile su</div>
+        <div class="small lang-en">Get it on</div>
         <div class="big">Google Play</div>
       </div>
     </div>
@@ -405,16 +482,18 @@ nav {
 </div>
 
 <script>
-  /* UTILITY PER EFFETTO HOVER DELLE IMMAGINI */
+  /* UTILITY PER EFFETTO HOVER DELLE IMMAGINI (Solo desktop) */
   document.querySelectorAll('.event-card').forEach(card => {
     const img = card.querySelector('.event-hover-img');
     if (!img) return;
 
-    card.addEventListener('mouseenter', () => { img.style.opacity = '1'; });
-    card.addEventListener('mouseleave', () => { img.style.opacity = '0'; });
+    card.addEventListener('mouseenter', () => { if(window.innerWidth > 768) img.style.opacity = '1'; });
+    card.addEventListener('mouseleave', () => { if(window.innerWidth > 768) img.style.opacity = '0'; });
     card.addEventListener('mousemove', (e) => {
-      img.style.left = e.clientX + 20 + 'px';
-      img.style.top = e.clientY - 90 + 'px';
+      if(window.innerWidth > 768) {
+        img.style.left = e.clientX + 20 + 'px';
+        img.style.top = e.clientY - 90 + 'px';
+      }
     });
   });
 

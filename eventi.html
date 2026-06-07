@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Inter', sans-serif; background:#fff; color:#111; }
+body { font-family:'Inter', sans-serif; background:#fff; color:#111; -webkit-text-size-adjust: 100%; }
 
 /* GESTIONE MULTILINGUA VIA CSS */
 body.lang-en .lang-it { display: none !important; }
@@ -18,6 +18,7 @@ body:not(.lang-en) .lang-en { display: none !important; }
 nav {
   display:flex; align-items:center; justify-content:space-between;
   padding:18px 40px; border-bottom:1px solid #eee;
+  gap: 20px;
 }
 .logo { font-size:20px; font-weight:900; letter-spacing:-0.5px; color:#111; display:flex; align-items:center; gap:8px; text-decoration:none; }
 .logo-dot { width:8px; height:8px; background:#ff0040; border-radius:50%; }
@@ -26,7 +27,7 @@ nav {
 .nav-links a.active { color:#111; font-weight:600; }
 .nav-lang { font-size:12px; color:#111; font-weight:600; display:flex; align-items:center; gap:4px; text-decoration:none; border:1px solid #eee; padding:4px 10px; border-radius:6px; background:none; cursor:pointer; }
 .nav-lang:hover { background:#f9f9f9; }
-.nav-pill { background:#111; color:#fff; font-size:13px; font-weight:600; padding:8px 20px; border-radius:100px; border:none; cursor:pointer; }
+.nav-pill { background:#111; color:#fff; font-size:13px; font-weight:600; padding:8px 20px; border-radius:100px; border:none; cursor:pointer; white-space: nowrap; }
 
 .page-hero {
   padding:80px 40px 60px;
@@ -55,8 +56,7 @@ nav {
 .filter-btn {
   padding:8px 18px; border-radius:100px; font-size:12px; font-weight:700;
   cursor:pointer; border:1.5px solid #eee; background:#fff; color:#777;
-  transition: all 0.15s;
-  letter-spacing:0.5px;
+  transition: all 0.15s; letter-spacing:0.5px; white-space: nowrap;
 }
 .filter-btn:hover { border-color:#111; color:#111; }
 .filter-btn.active { background:#111; color:#fff; border-color:#111; }
@@ -71,7 +71,7 @@ nav {
 .filter-btn.city-venezia.active { background:#c6ff8d; border-color:#c6ff8d; color:#111; }
 .filter-btn.city-londra.active { background:#111; border-color:#111; }
 .filter-btn.city-parigi.active { background:#5360fe; border-color:#5360fe; }
-.filter-sep { width:1px; height:20px; background:#eee; margin:0 4px; }
+.filter-sep { width:1px; height:20px; background:#eee; margin:0 4px; flex-shrink: 0; }
 
 /* GRIGLIA EVENTI */
 .events-section { padding:48px 40px 60px; }
@@ -157,7 +157,72 @@ nav {
 .footer-bar {
   display:flex; justify-content:space-between; align-items:center;
   padding:20px 40px; border-top:1px solid #eee;
-  font-size:12px; color:#bbb;
+  font-size:12px; color:#bbb; gap: 20px;
+}
+
+/* ==========================================
+   MEDIA QUERIES PER LAYOUT RESPONSIVE (MOBILE)
+   ========================================== */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+  }
+  .nav-links {
+    gap: 20px;
+  }
+  
+  .page-hero {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+  .page-hero h1 {
+    font-size: 48px;
+    letter-spacing: -2px;
+  }
+  
+  /* Barra filtri scorrevole lateralmente con il dito su mobile */
+  .filters-bar {
+    padding: 16px 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+  }
+  .filters-bar::-webkit-scrollbar {
+    display: none; /* Nasconde la barra di scorrimento brutta visivamente */
+  }
+  .filter-sep {
+    display: none; /* Rimuoviamo il separatore per pulizia su mobile */
+  }
+
+  .events-section {
+    padding: 30px 20px;
+  }
+  .events-grid {
+    grid-template-columns: 1fr; /* Una colonna per gli eventi */
+    gap: 16px;
+  }
+  
+  .cta-section {
+    margin: 0 20px 40px;
+    padding: 40px 24px;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .cta-left h2 {
+    font-size: 28px;
+  }
+  
+  .footer-bar {
+    flex-direction: column;
+    padding: 24px 20px;
+    text-align: center;
+    gap: 12px;
+  }
 }
 </style>
 </head>

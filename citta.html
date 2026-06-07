@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Inter', sans-serif; background:#fff; color:#111; }
+body { font-family:'Inter', sans-serif; background:#fff; color:#111; -webkit-text-size-adjust: 100%; }
 
 /* GESTIONE MULTILINGUA VIA CSS */
 body.lang-en .lang-it { display: none !important; }
@@ -17,7 +17,7 @@ body:not(.lang-en) .lang-en { display: none !important; }
 
 nav {
   display:flex; align-items:center; justify-content:space-between;
-  padding:18px 40px; border-bottom:1px solid #eee;
+  padding:18px 40px; border-bottom:1px solid #eee; gap: 20px;
 }
 .logo { font-size:20px; font-weight:900; letter-spacing:-0.5px; color:#111; display:flex; align-items:center; gap:8px; text-decoration:none; }
 .logo-dot { width:8px; height:8px; background:#ff0040; border-radius:50%; }
@@ -26,7 +26,7 @@ nav {
 .nav-links a.active { color:#111; font-weight:600; }
 .nav-lang { font-size:12px; color:#111; font-weight:600; display:flex; align-items:center; gap:4px; text-decoration:none; border:1px solid #eee; padding:4px 10px; border-radius:6px; background:none; cursor:pointer; }
 .nav-lang:hover { background:#f9f9f9; }
-.nav-pill { background:#111; color:#fff; font-size:13px; font-weight:600; padding:8px 20px; border-radius:100px; border:none; cursor:pointer; }
+.nav-pill { background:#111; color:#fff; font-size:13px; font-weight:600; padding:8px 20px; border-radius:100px; border:none; cursor:pointer; white-space: nowrap; }
 
 .page-hero {
   padding:80px 40px 60px;
@@ -110,7 +110,89 @@ nav {
 .footer-bar {
   display:flex; justify-content:space-between; align-items:center;
   padding:20px 40px; border-top:1px solid #eee;
-  font-size:12px; color:#bbb;
+  font-size:12px; color:#bbb; gap: 20px;
+}
+
+/* ==========================================
+   MEDIA QUERIES PER LAYOUT RESPONSIVE (MOBILE)
+   ========================================== */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+  }
+  .nav-links {
+    gap: 20px;
+  }
+  
+  .page-hero {
+    padding: 60px 20px 40px;
+  }
+  .page-hero h1 {
+    font-size: 48px;
+    letter-spacing: -2px;
+  }
+  
+  .cities-list {
+    padding: 20px;
+  }
+  
+  .city-row {
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 20px 0;
+  }
+  .city-left {
+    gap: 12px;
+  }
+  .city-index {
+    min-width: 18px;
+    font-size: 11px;
+  }
+  .city-name-big {
+    font-size: 22px;
+  }
+  
+  /* Sposta le date sotto il nome della città occupando la riga inferiore interna */
+  .city-row > div:nth-child(2) {
+    grid-column: 1 / -1;
+    padding-left: 30px; /* Allineamento con l'inizio del testo della città */
+    margin-top: -4px;
+  }
+  .city-dates {
+    font-size: 13px;
+  }
+  
+  /* Nasconde la terza colonna vuota usata come spaziatore su desktop */
+  .city-row > div:nth-child(3) {
+    display: none;
+  }
+  
+  /* Riposiziona il pulsante "+" sulla destra della riga principale */
+  .city-cta {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+  
+  .cta-section {
+    margin: 40px 20px;
+    padding: 40px 24px;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .cta-left h2 {
+    font-size: 28px;
+  }
+  
+  .footer-bar {
+    flex-direction: column;
+    padding: 24px 20px;
+    text-align: center;
+    gap: 16px;
+  }
 }
 </style>
 </head>
