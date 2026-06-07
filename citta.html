@@ -3,13 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flow — Città</title>
+<title>Flow — Città / Cities</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Inter', sans-serif; background:#fff; color:#111; }
+
+/* GESTIONE MULTILINGUA VIA CSS */
+body.lang-en .lang-it { display: none !important; }
+body:not(.lang-en) .lang-en { display: none !important; }
 
 nav {
   display:flex; align-items:center; justify-content:space-between;
@@ -20,7 +24,7 @@ nav {
 .nav-links { display:flex; gap:28px; font-size:13px; }
 .nav-links a { text-decoration:none; color:#777; }
 .nav-links a.active { color:#111; font-weight:600; }
-.nav-lang { font-size:12px; color:#111; font-weight:600; display:flex; align-items:center; gap:4px; text-decoration:none; border:1px solid #eee; padding:4px 10px; border-radius:6px; }
+.nav-lang { font-size:12px; color:#111; font-weight:600; display:flex; align-items:center; gap:4px; text-decoration:none; border:1px solid #eee; padding:4px 10px; border-radius:6px; background:none; cursor:pointer; }
 .nav-lang:hover { background:#f9f9f9; }
 .nav-pill { background:#111; color:#fff; font-size:13px; font-weight:600; padding:8px 20px; border-radius:100px; border:none; cursor:pointer; }
 
@@ -115,26 +119,44 @@ nav {
 <nav>
   <a class="logo" href="index.html"><div class="logo-dot"></div>FLOW</a>
   <div class="nav-links">
-    <a href="citta.html" class="active">Città</a>
-    <a href="eventi.html">Eventi</a>
+    <a href="citta.html" class="active">
+      <span class="lang-it">Città</span>
+      <span class="lang-en">Cities</span>
+    </a>
+    <a href="eventi.html">
+      <span class="lang-it">Eventi</span>
+      <span class="lang-en">Events</span>
+    </a>
     <a href="about.html">About</a>
   </div>
   <div style="display:flex; align-items:center; gap:16px;">
-    <!-- CAMBIATO: Link interattivo alla versione EN -->
-    <a class="nav-lang" href="citta_en.html"><i class="ti ti-language" aria-hidden="true"></i> IT / <span>EN</span></a>
-    <button class="nav-pill" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior:'smooth' })">Scarica l'app</button>
+    <button class="nav-lang" onclick="toggleLanguage()">
+      <i class="ti ti-language" aria-hidden="true"></i> 
+      <span id="lang-label-it"><strong>IT</strong> / <span style="color:#777;">EN</span></span>
+      <span id="lang-label-en" style="display:none;"><span style="color:#777;">IT</span> / <strong>EN</strong></span>
+    </button>
+    
+    <button class="nav-pill" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior:'smooth' })">
+      <span class="lang-it">Scarica l'app</span>
+      <span class="lang-en">Download App</span>
+    </button>
   </div>
 </nav>
 
 <div class="page-hero">
-  <div class="page-tag"><i class="ti ti-map-pin" aria-hidden="true"></i>11 città nel mondo</div>
-  <h1>Dove il<br>design <span>accade</span>.</h1>
-  <p>Tutte le Design Week che trovi su Flow, in ordine cronologico. Aggiungi le tappe che vuoi al tuo itinerario e pianifica tutto in un unico posto.</p>
+  <div class="page-tag">
+    <i class="ti ti-map-pin" aria-hidden="true"></i>
+    <span class="lang-it">11 città nel mondo</span>
+    <span class="lang-en">11 cities worldwide</span>
+  </div>
+  <h1 class="lang-it">Dove il<br>design <span>accade</span>.</h1>
+  <h1 class="lang-en">Where<br>design <span>happens</span>.</h1>
+  <p class="lang-it">Tutte le Design Week che trovi su Flow, in ordine cronologico. Aggiungi le tappe che vuoi al tuo itinerario e pianifica tutto in un unico posto.</p>
+  <p class="lang-en">All the Design Weeks you can find on Flow, in chronological order. Add the stops you want to your itinerary and plan everything in one single place.</p>
 </div>
 
 <div class="cities-list">
 
-  <!-- Toronto -->
   <div class="city-row">
     <div class="city-left">
       <span class="city-index">01</span>
@@ -145,15 +167,14 @@ nav {
       </div>
     </div>
     <div>
-      <div class="city-dates">23 gen – 1 feb 2026</div>
-      <div class="city-dates-sub">10 giorni</div>
+      <div class="city-dates lang-it">23 gen – 1 feb 2026</div>
+      <div class="city-dates lang-en">Jan 23 – Feb 1, 2026</div>
+      <div class="city-dates-sub"><span class="lang-it">10 giorni</span><span class="lang-en">10 days</span></div>
     </div>
-    <div>
-    </div>
+    <div></div>
     <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
   </div>
 
-  <!-- Madrid -->
   <div class="city-row">
     <div class="city-left">
       <span class="city-index">02</span>
@@ -164,56 +185,52 @@ nav {
       </div>
     </div>
     <div>
-      <div class="city-dates">5 feb – 8 mar 2026</div>
-      <div class="city-dates-sub">32 giorni</div>
+      <div class="city-dates lang-it">5 feb – 8 mar 2026</div>
+      <div class="city-dates lang-en">Feb 5 – Mar 8, 2026</div>
+      <div class="city-dates-sub"><span class="lang-it">32 giorni</span><span class="lang-en">32 days</span></div>
     </div>
-    <div>
-
-    </div>
+    <div></div>
     <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
   </div>
 
-  <!-- Bruxelles -->
   <div class="city-row">
     <div class="city-left">
       <span class="city-index">03</span>
       <div class="city-color-dot" style="background:#111;"></div>
       <div>
-        <div class="city-name-big">Bruxelles</div>
+        <div class="city-name-big lang-it">Bruxelles</div>
+        <div class="city-name-big lang-en">Brussels</div>
         <div class="city-festival">Brussels Design September</div>
       </div>
     </div>
     <div>
-      <div class="city-dates">12 – 15 mar 2026</div>
-      <div class="city-dates-sub">4 giorni</div>
+      <div class="city-dates lang-it">12 – 15 mar 2026</div>
+      <div class="city-dates lang-en">Mar 12 – 15, 2026</div>
+      <div class="city-dates-sub"><span class="lang-it">4 giorni</span><span class="lang-en">4 days</span></div>
     </div>
-    <div>
-
-    </div>
+    <div></div>
     <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
   </div>
 
-  <!-- Milano -->
   <div class="city-row">
     <div class="city-left">
       <span class="city-index">04</span>
       <div class="city-color-dot" style="background:#c6ff8d; border:1px solid #bbe87a;"></div>
       <div>
-        <div class="city-name-big">Milano</div>
+        <div class="city-name-big lang-it">Milano</div>
+        <div class="city-name-big lang-en">Milan</div>
         <div class="city-festival">Fuorisalone / Salone del Mobile</div>
       </div>
     </div>
     <div>
-      <div class="city-dates">21 – 26 apr 2026</div>
-      <div class="city-dates-sub">6 giorni</div>
+      <div class="city-dates lang-it">21 – 26 apr 2026</div>
+      <div class="city-dates lang-en">Apr 21 – 26, 2026</div>
+      <div class="city-dates-sub"><span class="lang-it">6 giorni</span><span class="lang-en">6 days</span></div>
     </div>
-    <div>
-
-    </div>
-   <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
+    <div></div>
+    <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
   </div>
 
-  <!-- Reykjavík -->
   <div class="city-row">
     <div class="city-left">
       <span class="city-index">05</span>
@@ -224,16 +241,14 @@ nav {
       </div>
     </div>
     <div>
-      <div class="city-dates">6 – 10 mag 2026</div>
-      <div class="city-dates-sub">5 giorni</div>
+      <div class="city-dates lang-it">6 – 10 mag 2026</div>
+      <div class="city-dates lang-en">May 6 – 10, 2026</div>
+      <div class="city-dates-sub"><span class="lang-it">5 giorni</span><span class="lang-en">5 days</span></div>
     </div>
-    <div>
-
-    </div>
+    <div></div>
     <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
   </div>
 
-  <!-- New York -->
   <div class="city-row">
     <div class="city-left">
       <span class="city-index">06</span>
@@ -244,16 +259,14 @@ nav {
       </div>
     </div>
     <div>
-      <div class="city-dates">14 – 20 mag 2026</div>
-      <div class="city-dates-sub">7 giorni</div>
+      <div class="city-dates lang-it">14 – 20 mag 2026</div>
+      <div class="city-dates lang-en">May 14 – 20, 2026</div>
+      <div class="city-dates-sub"><span class="lang-it">7 giorni</span><span class="lang-en">7 days</span></div>
     </div>
-    <div>
-
-    </div>
+    <div></div>
     <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
   </div>
 
-  <!-- Copenhagen -->
   <div class="city-row">
     <div class="city-left">
       <span class="city-index">07</span>
@@ -264,16 +277,14 @@ nav {
       </div>
     </div>
     <div>
-      <div class="city-dates">10 – 12 giu 2026</div>
-      <div class="city-dates-sub">3 giorni</div>
+      <div class="city-dates lang-it">10 – 12 giu 2026</div>
+      <div class="city-dates lang-en">Jun 10 – 12, 2026</div>
+      <div class="city-dates-sub"><span class="lang-it">3 giorni</span><span class="lang-en">3 days</span></div>
     </div>
-    <div>
-
-    </div>
+    <div></div>
     <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
   </div>
 
-  <!-- Helsinki -->
   <div class="city-row">
     <div class="city-left">
       <span class="city-index">08</span>
@@ -284,72 +295,68 @@ nav {
       </div>
     </div>
     <div>
-      <div class="city-dates">28 ago – 6 set 2026</div>
-      <div class="city-dates-sub">10 giorni</div>
+      <div class="city-dates lang-it">28 ago – 6 set 2026</div>
+      <div class="city-dates lang-en">Aug 28 – Sep 6, 2026</div>
+      <div class="city-dates-sub"><span class="lang-it">10 giorni</span><span class="lang-en">10 days</span></div>
     </div>
-    <div>
-
-    </div>
+    <div></div>
     <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
   </div>
 
-  <!-- Parigi -->
   <div class="city-row">
     <div class="city-left">
       <span class="city-index">09</span>
       <div class="city-color-dot" style="background:#5360fe;"></div>
       <div>
-        <div class="city-name-big">Parigi</div>
+        <div class="city-name-big lang-it">Parigi</div>
+        <div class="city-name-big lang-en">Paris</div>
         <div class="city-festival">Paris Design Week</div>
       </div>
     </div>
     <div>
-      <div class="city-dates">3 – 12 set 2026</div>
-      <div class="city-dates-sub">10 giorni</div>
+      <div class="city-dates lang-it">3 – 12 set 2026</div>
+      <div class="city-dates lang-en">Sep 3 – 12, 2026</div>
+      <div class="city-dates-sub"><span class="lang-it">10 giorni</span><span class="lang-en">10 days</span></div>
     </div>
-    <div>
-
-    </div>
+    <div></div>
     <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
   </div>
 
-  <!-- Londra -->
   <div class="city-row">
     <div class="city-left">
       <span class="city-index">10</span>
       <div class="city-color-dot" style="background:#111;"></div>
       <div>
-        <div class="city-name-big">Londra</div>
+        <div class="city-name-big lang-it">Londra</div>
+        <div class="city-name-big lang-en">London</div>
         <div class="city-festival">London Design Festival</div>
       </div>
     </div>
     <div>
-      <div class="city-dates">12 – 20 set 2026</div>
-      <div class="city-dates-sub">9 giorni</div>
+      <div class="city-dates lang-it">12 – 20 set 2026</div>
+      <div class="city-dates lang-en">Sep 12 – 20, 2026</div>
+      <div class="city-dates-sub"><span class="lang-it">9 giorni</span><span class="lang-en">9 days</span></div>
     </div>
-    <div>
-
-    </div>
+    <div></div>
     <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
   </div>
 
-  <!-- Venezia -->
   <div class="city-row">
     <div class="city-left">
       <span class="city-index">11</span>
       <div class="city-color-dot" style="background:#c6ff8d; border:1px solid #bbe87a;"></div>
       <div>
-        <div class="city-name-big">Venezia</div>
+        <div class="city-name-big lang-it">Venezia</div>
+        <div class="city-name-big lang-en">Venice</div>
         <div class="city-festival">Venice Design Week</div>
       </div>
     </div>
     <div>
-      <div class="city-dates">1 – 30 ott 2026</div>
-      <div class="city-dates-sub">30 giorni</div>
+      <div class="city-dates lang-it">1 – 30 ott 2026</div>
+      <div class="city-dates lang-en">Oct 1 – 30, 2026</div>
+      <div class="city-dates-sub"><span class="lang-it">30 giorni</span><span class="lang-en">30 days</span></div>
     </div>
-    <div>
-
-    </div>
+    <div></div>
     <div class="city-cta" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })"><i class="ti ti-plus" aria-hidden="true"></i></div>
   </div>
 
@@ -357,21 +364,25 @@ nav {
 
 <div class="cta-section">
   <div class="cta-left">
-    <h2>11 Città chiave.<br>Un'unica grande mappa.<br><em>Nessun rinvio ad altre app.</em></h2>
-    <p>Scarica Flow e accedi ai canali di Milano, New York, Copenhagen, Parigi, Londra, Madrid, Bruxelles, Venezia, Toronto, Helsinki e Reykjavík. Gestione smart, gratis.</p>
+    <h2 class="lang-it">11 Città chiave.<br>Un'unica grande mappa.<br><em>Nessun rinvio ad altre app.</em></h2>
+    <h2 class="lang-en">11 Key Cities.<br>One Big Map.<br><em>No redirection to other apps.</em></h2>
+    <p class="lang-it">Scarica Flow e accedi ai canali di Milano, New York, Copenhagen, Parigi, Londra, Madrid, Bruxelles, Venezia, Toronto, Helsinki e Reykjavík. Gestione smart, gratis.</p>
+    <p class="lang-en">Download Flow and access channels for Milan, New York, Copenhagen, Paris, London, Madrid, Brussels, Venice, Toronto, Helsinki, and Reykjavík. Smart management, free.</p>
   </div>
   <div class="cta-right">
     <div class="store-btn" onclick="window.open('https://apps.apple.com','_blank')">
       <i class="ti ti-brand-apple" aria-hidden="true"></i>
       <div class="store-text">
-        <div class="small">Scarica su</div>
+        <div class="small lang-it">Scarica su</div>
+        <div class="small lang-en">Download on the</div>
         <div class="big">App Store</div>
       </div>
     </div>
     <div class="store-btn lime" onclick="window.open('https://play.google.com/store','_blank')">
       <i class="ti ti-brand-google-play" aria-hidden="true"></i>
       <div class="store-text">
-        <div class="small">Disponibile su</div>
+        <div class="small lang-it">Disponibile su</div>
+        <div class="small lang-en">Get it on</div>
         <div class="big">Google Play</div>
       </div>
     </div>
@@ -379,9 +390,40 @@ nav {
 </div>
 
 <div class="footer-bar">
-  <span>© 2026 Flow · La mappa integrata per aspiranti designer</span>
-  <span>Milano · Copenhagen · Madrid · Bruxelles · New York · Venezia · Toronto · Helsinki · Reykjavík · Londra · Parigi</span>
+  <span class="lang-it">© 2026 Flow · La mappa integrata per aspiranti designer</span>
+  <span class="lang-en">© 2026 Flow · The integrated map for aspiring designers</span>
+  <span class="lang-it">Milano · Copenhagen · Madrid · Bruxelles · New York · Venezia · Toronto · Helsinki · Reykjavík · Londra · Parigi</span>
+  <span class="lang-en">Milan · Copenhagen · Madrid · Brussels · New York · Venice · Toronto · Helsinki · Reykjavík · London · Paris</span>
 </div>
+
+<script>
+  /* CODE SCRIPT PER SISTEMA DI MEMORIA DELLA LINGUA */
+  function applyLanguage(lang) {
+    const labelIt = document.getElementById('lang-label-it');
+    const labelEn = document.getElementById('lang-label-en');
+
+    if (lang === 'en') {
+      document.body.classList.add('lang-en');
+      if(labelIt) labelIt.style.display = 'none';
+      if(labelEn) labelEn.style.display = 'inline';
+    } else {
+      document.body.classList.remove('lang-en');
+      if(labelIt) labelIt.style.display = 'inline';
+      if(labelEn) labelEn.style.display = 'none';
+    }
+  }
+
+  function toggleLanguage() {
+    let currentLang = localStorage.getItem('selectedLanguage') || 'it';
+    let newLang = (currentLang === 'it') ? 'en' : 'it';
+    localStorage.setItem('selectedLanguage', newLang);
+    applyLanguage(newLang);
+  }
+
+  // Controlla e applica subito la lingua salvata nel browser
+  const savedLang = localStorage.getItem('selectedLanguage') || 'it';
+  applyLanguage(savedLang);
+</script>
 
 </body>
 </html>
