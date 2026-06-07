@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flow — Design Week</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter', sans-serif; background:#fff; color:#111; }
+
+nav {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 40px; border-bottom:1px solid #eee;
+}
+.logo { font-size:20px; font-weight:900; letter-spacing:-0.5px; color:#111; display:flex; align-items:center; gap:8px; text-decoration:none; }
+.logo-dot { width:8px; height:8px; background:#ff0040; border-radius:50%; }
+.nav-links { display:flex; gap:28px; font-size:13px; }
+.nav-links a { text-decoration:none; color:#777; }
+.nav-links a.active { color:#111; font-weight:600; }
+.nav-lang { font-size:12px; color:#111; font-weight:600; display:flex; align-items:center; gap:4px; cursor:pointer; border:1px solid #eee; padding:4px 10px; border-radius:6px; }
+.nav-pill { background:#111; color:#fff; font-size:13px; font-weight:600; padding:8px 20px; border-radius:100px; border:none; cursor:pointer; }
+
+.hero {
+  padding:64px 40px 56px;
+  display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;
+  border-bottom:1px solid #eee;
+}
+.hero-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  background:#c6ff8d; color:#111; font-size:11px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase; padding:6px 14px;
+  border-radius:100px; margin-bottom:20px;
+}
+.hero-tag i { font-size:14px; }
+.hero h1 {
+  font-size:64px; font-weight:900; line-height:0.9; letter-spacing:-3px;
+  color:#111; margin-bottom:20px;
+}
+.hero h1 .red { color:#ff0040; }
+.hero h1 .blue { color:#5360fe; }
+.hero-sub { font-size:15px; color:#666; line-height:1.6; margin-bottom:32px; }
+.hero-btns { display:flex; gap:12px; align-items:center; }
+.btn-main { background:#111; color:#fff; font-weight:700; font-size:14px; padding:13px 28px; border-radius:100px; border:none; cursor:pointer; display:flex; align-items:center; gap:8px; }
+
+.hero-visual { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.city-card {
+  border-radius:16px; padding:18px 16px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  min-height:110px; position:relative; overflow:hidden;
+}
+.cc-milano { background:#5360fe; }
+.cc-copenhagen { background:#ff0040; }
+.cc-nyc { background:#c6ff8d; }
+.cc-madrid { background:#111; }
+.city-name { font-size:13px; font-weight:700; color:#fff; letter-spacing:1px; text-transform:uppercase; }
+.cc-nyc .city-name { color:#111; }
+.city-date { font-size:11px; color:rgba(255,255,255,0.6); margin-top:3px; }
+.cc-nyc .city-date { color:rgba(0,0,0,0.5); }
+.city-num { font-size:32px; font-weight:900; color:rgba(255,255,255,0.15); position:absolute; bottom:8px; right:12px; letter-spacing:-2px; }
+.cc-nyc .city-num { color:rgba(0,0,0,0.08); }
+.city-events { font-size:11px; color:rgba(255,255,255,0.8); margin-top:auto; }
+.cc-nyc .city-events { color:rgba(0,0,0,0.6); }
+
+.ticker-bar {
+  background:#111; color:#c6ff8d; font-size:12px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
+  padding:12px 40px; overflow:hidden; white-space:nowrap;
+}
+.ticker-inner { display:inline-block; animation:ticker 18s linear infinite; }
+@keyframes ticker { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+.features { display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:#eee; border-top:1px solid #eee; }
+.feat { background:#fff; padding:32px 28px; display:flex; flex-direction:column; gap:12px; }
+.feat-icon { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+.fi-lime { background:#c6ff8d; }
+.fi-red { background:#ff0040; }
+.fi-blue { background:#5360fe; }
+.fi-red i, .fi-blue i { color:#fff; }
+.fi-lime i { color:#111; }
+.feat h3 { font-size:15px; font-weight:700; color:#111; }
+.feat p { font-size:13px; color:#888; line-height:1.6; }
+
+.cities-section { padding:60px 40px; }
+.sec-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:32px; }
+.sec-header h2 { font-size:28px; font-weight:900; letter-spacing:-1px; }
+.sec-header h2 span { color:#ff0040; }
+.see-all { font-size:13px; color:#5360fe; font-weight:600; text-decoration:none; cursor:pointer; display:flex; align-items:center; gap:4px; }
+
+.cities-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+.event-card { border-radius:18px; overflow:hidden; border:1px solid #f0f0f0; display:flex; flex-direction:column; }
+.event-top { padding:20px 18px 16px; flex:1; }
+.event-city-badge {
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  padding:4px 10px; border-radius:100px; margin-bottom:14px;
+}
+.badge-milan { background:#5360fe; color:#fff; }
+.badge-toronto { background:#ff0040; color:#fff; }
+.badge-london { background:#111; color:#fff; }
+.badge-cph { background:#c6ff8d; color:#111; }
+.event-title { font-size:14px; font-weight:700; color:#111; margin-bottom:6px; }
+.event-desc { font-size:12px; color:#888; line-height:1.5; }
+.event-bottom {
+  padding:12px 18px; border-top:1px solid #f0f0f0;
+  display:flex; justify-content:space-between; align-items:center;
+  cursor: pointer; /* <--- Aggiunge la manina al passaggio del mouse */
+}.event-date { font-size:11px; color:#aaa; }
+.event-arrow { width:26px; height:26px; background:#111; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+.event-arrow i { font-size:13px; color:#fff; }
+
+.cta-section {
+  margin:0 40px 60px;
+  background:#111; border-radius:28px; padding:56px 52px;
+  display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;
+}
+.cta-left h2 { font-size:34px; font-weight:900; letter-spacing:-1.5px; color:#fff; line-height:1.1; margin-bottom:14px; }
+.cta-left h2 em { color:#c6ff8d; font-style:normal; }
+.cta-left p { font-size:14px; color:#888; line-height:1.6; }
+.cta-right { display:flex; flex-direction:column; gap:12px; }
+.store-btn {
+  display:flex; align-items:center; gap:14px;
+  background:#1e1e1e; border-radius:14px; padding:12px 20px; cursor:pointer; border:1px solid #333;
+}
+.store-btn i { font-size:26px; color:#fff; }
+.store-text .small { font-size:10px; color:#888; }
+.store-text .big { font-size:15px; font-weight:700; color:#fff; }
+.store-btn.lime { background:#c6ff8d; border-color:#c6ff8d; }
+.store-btn.lime i { color:#111; }
+.store-btn.lime .store-text .small { color:#555; }
+.store-btn.lime .store-text .big { color:#111; }
+
+.footer-bar {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 40px; border-top:1px solid #eee;
+  font-size:12px; color:#bbb;
+}
+
+.event-card { position: relative; overflow: visible; }
+
+.event-hover-img {
+  position: fixed;
+  width: 280px; height: 180px;
+  border-radius: 12px; overflow: hidden;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 9999;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  transform: translate(20px, -50%);
+}
+.event-hover-img img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html"><div class="logo-dot"></div>FLOW</a>
+  <div class="nav-links">
+    <a href="citta.html">Città</a>
+    <a href="eventi.html">Eventi</a>
+    <a href="about.html">About</a>
+  </div>
+  <div style="display:flex; align-items:center; gap:16px;">
+    <div class="nav-lang"><i class="ti ti-language" aria-hidden="true"></i> IT / EN</div>
+    <button class="nav-pill" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior:'smooth' })">Scarica l'app</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag"><i class="ti ti-world" aria-hidden="true"></i>Design Week Nel Mondo</div>
+    <h1>LE MIGLIORI<br><span class="red">DESIGN</span><br><span class="blue">WEEK</span></h1>
+    <p class="hero-sub">
+      È un'app pensata per aiutare aspiranti designer ad organizzare in modo semplice, veloce e intelligente i numerosi eventi di design presenti in Europa e nel mondo, evitando la dispersione e facilitando la scoperta di realtà emergenti o meno note. Sincronizza e pianifica le tue tappe preferite in un unico spazio centralizzato.
+    </p>
+    <div class="hero-btns">
+      <button class="btn-main" onclick="window.open('https://apps.apple.com','_blank')">
+        <i class="ti ti-brand-apple" aria-hidden="true"></i>App Store
+      </button>
+      <button class="btn-main" onclick="window.open('https://play.google.com/store','_blank')" style="background:#c6ff8d; color:#111;">
+        <i class="ti ti-brand-google-play" aria-hidden="true"></i>Google Play
+      </button>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="city-card cc-milano">
+      <div><div class="city-name">Milano</div><div class="city-date">Passaporto Integrato</div></div>
+      <div class="city-events">Fuorisalone</div>
+      <div class="city-num">MI</div>
+    </div>
+    <div class="city-card cc-copenhagen">
+      <div><div class="city-name">Copenhagen</div><div class="city-date">3DaysOfDesign</div></div>
+      <div class="city-events">Nordic Design</div>
+      <div class="city-num">CPH</div>
+    </div>
+    <div class="city-card cc-nyc">
+      <div><div class="city-name">New York</div><div class="city-date">NYCxDesign</div></div>
+      <div class="city-events">Hub Internazionale</div>
+      <div class="city-num">NY</div>
+    </div>
+    <div class="city-card cc-madrid">
+      <div><div class="city-name">Madrid</div><div class="city-date">Madrid Design Festival</div></div>
+      <div class="city-events">Realtà Emergenti</div>
+      <div class="city-num">MAD</div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    Toronto &nbsp;·&nbsp; Madrid &nbsp;·&nbsp; Bruxelles &nbsp;·&nbsp; Milano &nbsp;·&nbsp; Reykjavík &nbsp;·&nbsp; New York &nbsp;·&nbsp; Copenhagen &nbsp;·&nbsp; Helsinki &nbsp;·&nbsp; Venezia &nbsp;·&nbsp; Londra &nbsp;·&nbsp; Parigi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Toronto &nbsp;·&nbsp; Madrid &nbsp;·&nbsp; Bruxelles &nbsp;·&nbsp; Milano &nbsp;·&nbsp; Reykjavík &nbsp;·&nbsp; New York &nbsp;·&nbsp; Copenhagen &nbsp;·&nbsp; Helsinki &nbsp;·&nbsp; Venezia &nbsp;·&nbsp; Londra &nbsp;·&nbsp; Parigi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+</div>
+
+<div class="features">
+  <div class="feat">
+    <div class="feat-icon fi-lime"><i class="ti ti-navigation" aria-hidden="true"></i></div>
+    <h3>Tracciamento senza mappe esterne</h3>
+    <p>Visualizza graficamente l'intero percorso del tuo itinerario direttamente all'interno di Flow, ottimizzando gli spostamenti tra esposizioni senza mai dover uscire dall'app.</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon fi-red"><i class="ti ti-ticket" aria-hidden="true"></i></div>
+    <h3>Passaporto Fuorisalone</h3>
+    <p>Esplora Milano e tieni traccia delle tue visite. Con il passaporto integrato registri la tua presenza nei distretti chiave e collezioni i visti dei progetti ed eventi visitati.</p>
+  </div>
+  <div class="feat">
+    <div class="feat-icon fi-blue"><i class="ti ti-share" aria-hidden="true"></i></div>
+    <h3>Multi-Pianificazione</h3>
+    <p>Organizza e gestisci più festival di design contemporaneamente. Crea il tuo itinerario ideale su misura e condividilo all'istante con i tuoi contatti o colleghi di studio.</p>
+  </div>
+</div>
+
+<div class="cities-section">
+  <div class="sec-header">
+    <h2>In evidenza <span>questa settimana</span></h2>
+<a class="see-all" href="citta.html">Tutte le 11 città <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+  </div>
+
+  <div class="cities-grid">
+  <div class="event-card">
+    <div class="event-top">
+      <div class="event-city-badge badge-milan"><i class="ti ti-map-pin" style="font-size:10px" aria-hidden="true"></i>Milano</div>
+      <div class="event-title">Distretti del Fuorisalone</div>
+      <div class="event-desc">Usa il passaporto integrato per sbloccare l'itinerario ed evitare la dispersione tra le installazioni principali.</div>
+    </div>
+    <div class="event-bottom" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })">
+      <span class="event-date">Aggiungi a Itinerario</span>
+      <div class="event-arrow"><i class="ti ti-plus" aria-hidden="true"></i></div>
+    </div>
+    <div class="event-hover-img"><img src="milano.jpg" alt="Milano"></div>
+  </div>
+  <div class="event-card">
+    <div class="event-top">
+      <div class="event-city-badge badge-toronto"><i class="ti ti-map-pin" style="font-size:10px" aria-hidden="true"></i>Toronto</div>
+      <div class="event-title">Design Toronto Festival</div>
+      <div class="event-desc">Esplora e connettiti con il panorama creativo del design nordamericano oltre i confini europei.</div>
+    </div>
+    <div class="event-bottom" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })">
+      <span class="event-date">Aggiungi a Itinerario</span>
+      <div class="event-arrow"><i class="ti ti-plus" aria-hidden="true"></i></div>
+    </div>
+    <div class="event-hover-img"><img src="toronto.jpg" alt="Toronto"></div>
+  </div>
+  <div class="event-card">
+    <div class="event-top">
+      <div class="event-city-badge badge-london"><i class="ti ti-map-pin" style="font-size:10px" aria-hidden="true"></i>Londra + Parigi</div>
+      <div class="event-title">Pianificazione Combinata</div>
+      <div class="event-desc">Centralizza più eventi contemporaneamente. Monitora i percorsi e le mostre di entrambi i festival nello stesso spazio.</div>
+    </div>
+    <div class="event-bottom" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })">
+      <span class="event-date">Aggiungi a Itinerario</span>
+      <div class="event-arrow"><i class="ti ti-plus" aria-hidden="true"></i></div>
+    </div>
+    <div class="event-hover-img"><img src="londra-parigi.jpg" alt="Londra Parigi"></div>
+  </div>
+  <div class="event-card">
+    <div class="event-top">
+      <div class="event-city-badge badge-cph"><i class="ti ti-map-pin" style="font-size:10px" aria-hidden="true"></i>Copenhagen + Nordics</div>
+      <div class="event-title">Scoperta realtà meno note</div>
+      <div class="event-desc">Seleziona la lingua per localizzare studi emergenti a Copenhagen, Helsinki e Reykjavík in pochi secondi.</div>
+    </div>
+    <div class="event-bottom" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' })">
+      <span class="event-date">Aggiungi a Itinerario</span>
+      <div class="event-arrow"><i class="ti ti-plus" aria-hidden="true"></i></div>
+    </div>
+    <div class="event-hover-img"><img src="copenhagen.jpg" alt="Copenhagen"></div>
+  </div>
+</div>
+
+<div class="cta-section" style="margin-top:60px;">
+  <div class="cta-left">
+    <h2>11 Città chiave.<br>Un'unica grande mappa.<br><em>Nessun rinvio ad altre app.</em></h2>
+    <p>Scarica Flow e accedi ai canali di Milano, New York, Copenhagen, Parigi, Londra, Madrid, Bruxelles, Venezia, Toronto, Helsinki e Reykjavík. Gestione smart, gratis.</p>
+  </div>
+  <div class="cta-right">
+    <div class="store-btn" onclick="window.open('https://apps.apple.com','_blank')">
+      <i class="ti ti-brand-apple" aria-hidden="true"></i>
+      <div class="store-text">
+        <div class="small">Scarica su</div>
+        <div class="big">App Store</div>
+      </div>
+    </div>
+    <div class="store-btn lime" onclick="window.open('https://play.google.com/store','_blank')">
+      <i class="ti ti-brand-google-play" aria-hidden="true"></i>
+      <div class="store-text">
+        <div class="small">Disponibile su</div>
+        <div class="big">Google Play</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  <span>© 2026 Flow · La mappa integrata per aspiranti designer</span>
+  <span>Milano · Copenhagen · Madrid · Bruxelles · New York · Venezia · Toronto · Helsinki · Reykjavík · Londra · Parigi</span>
+</div>
+
+<script>
+  document.querySelectorAll('.event-card').forEach(card => {
+    const img = card.querySelector('.event-hover-img');
+    if (!img) return;
+
+    card.addEventListener('mouseenter', () => {
+      img.style.opacity = '1';
+    });
+    card.addEventListener('mouseleave', () => {
+      img.style.opacity = '0';
+    });
+    card.addEventListener('mousemove', (e) => {
+      img.style.left = e.clientX + 20 + 'px';
+      img.style.top = e.clientY - 90 + 'px';
+    });
+  });
+</script>
+
+</body>
+</html>

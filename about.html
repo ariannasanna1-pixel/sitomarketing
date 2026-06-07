@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flow — About Us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter', sans-serif; background:#fff; color:#111; }
+
+nav {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 40px; border-bottom:1px solid #eee;
+}
+.logo { font-size:20px; font-weight:900; letter-spacing:-0.5px; color:#111; display:flex; align-items:center; gap:8px; text-decoration:none; }
+.logo-dot { width:8px; height:8px; background:#ff0040; border-radius:50%; }
+.nav-links { display:flex; gap:28px; font-size:13px; }
+.nav-links a { text-decoration:none; color:#777; }
+.nav-links a.active { color:#111; font-weight:600; }
+.nav-lang { font-size:12px; color:#111; font-weight:600; display:flex; align-items:center; gap:4px; cursor:pointer; border:1px solid #eee; padding:4px 10px; border-radius:6px; }
+.nav-pill { background:#111; color:#fff; font-size:13px; font-weight:600; padding:8px 20px; border-radius:100px; border:none; cursor:pointer; }
+
+.hero {
+  padding:100px 40px 80px;
+  border-bottom:1px solid #eee;
+  display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+}
+.hero-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  background:#ff0040; color:#fff; font-size:11px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase; padding:6px 14px;
+  border-radius:100px; margin-bottom:24px;
+}
+.hero h1 {
+  font-size:72px; font-weight:900; line-height:0.88; letter-spacing:-4px;
+  color:#111; margin-bottom:28px;
+}
+.hero h1 .blue { color:#5360fe; }
+.hero h1 .lime { color:#c6ff8d; -webkit-text-stroke:2px #111; }
+.hero p { font-size:16px; color:#666; line-height:1.8; max-width:420px; }
+
+.stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.stat-card { border-radius:20px; padding:32px 28px; display:flex; flex-direction:column; gap:12px; }
+.sc-dark { background:#111; }
+.sc-lime { background:#c6ff8d; }
+.sc-blue { background:#5360fe; }
+.sc-red { background:#ff0040; }
+.stat-num { font-size:52px; font-weight:900; letter-spacing:-3px; line-height:1; }
+.sc-dark .stat-num { color:#c6ff8d; }
+.sc-lime .stat-num { color:#111; }
+.sc-blue .stat-num, .sc-red .stat-num { color:#fff; }
+.stat-label { font-size:13px; line-height:1.5; }
+.sc-dark .stat-label { color:#888; }
+.sc-lime .stat-label { color:#555; }
+.sc-blue .stat-label, .sc-red .stat-label { color:rgba(255,255,255,0.7); }
+
+.manifesto {
+  padding:80px 40px;
+  border-bottom:1px solid #eee;
+  display:grid; grid-template-columns:1fr 2fr; gap:60px; align-items:start;
+}
+.manifesto-label { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#bbb; padding-top:8px; }
+.manifesto-body { display:flex; flex-direction:column; gap:32px; }
+.manifesto-quote {
+  font-size:28px; font-weight:900; letter-spacing:-1px; line-height:1.2;
+  color:#111; padding-left:24px; border-left:4px solid #c6ff8d;
+}
+.manifesto-text { font-size:15px; color:#666; line-height:1.8; }
+.manifesto-text strong { color:#111; font-weight:700; }
+
+.team-section { padding:80px 40px; border-bottom:1px solid #eee; }
+.team-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:40px; }
+.team-header h2 { font-size:32px; font-weight:900; letter-spacing:-1.5px; }
+.team-header h2 span { color:#5360fe; }
+.team-header p { font-size:13px; color:#aaa; max-width:260px; text-align:right; line-height:1.6; }
+.team-grid { display:grid; grid-template-columns:repeat(6, 1fr); gap:12px; }
+.team-card { border-radius:16px; padding:20px 16px; border:1px solid #f0f0f0; display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; }
+.avatar { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:900; color:#fff; }
+.av1 { background:#5360fe; }
+.av2 { background:#ff0040; }
+.av3 { background:#111; }
+.av4 { background:#c6ff8d; color:#111; }
+.av5 { background:#5360fe; }
+.av6 { background:#ff0040; }
+.member-name { font-size:12px; font-weight:700; color:#111; }
+
+.cta-section {
+  margin:0 40px 60px;
+  background:#111; border-radius:28px; padding:56px 52px;
+  display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;
+}
+.cta-left h2 { font-size:34px; font-weight:900; letter-spacing:-1.5px; color:#fff; line-height:1.1; margin-bottom:14px; }
+.cta-left h2 em { color:#c6ff8d; font-style:normal; }
+.cta-left p { font-size:14px; color:#888; line-height:1.6; }
+.cta-right { display:flex; flex-direction:column; gap:12px; }
+.store-btn {
+  display:flex; align-items:center; gap:14px;
+  background:#1e1e1e; border-radius:14px; padding:12px 20px; cursor:pointer; border:1px solid #333;
+}
+.store-btn i { font-size:26px; color:#fff; }
+.store-text .small { font-size:10px; color:#888; }
+.store-text .big { font-size:15px; font-weight:700; color:#fff; }
+.store-btn.lime { background:#c6ff8d; border-color:#c6ff8d; }
+.store-btn.lime i { color:#111; }
+.store-btn.lime .store-text .small { color:#555; }
+.store-btn.lime .store-text .big { color:#111; }
+
+.footer-bar {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 40px; border-top:1px solid #eee;
+  font-size:12px; color:#bbb;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html"><div class="logo-dot"></div>FLOW</a>
+  <div class="nav-links">
+    <a href="citta.html">Città</a>
+    <a href="eventi.html">Eventi</a>
+    <a href="about.html" class="active">About</a>
+  </div>
+  <div style="display:flex; align-items:center; gap:16px;">
+    <div class="nav-lang"><i class="ti ti-language" aria-hidden="true"></i> IT / EN</div>
+    <button class="nav-pill" onclick="document.querySelector('.cta-section').scrollIntoView({ behavior:'smooth' })">Scarica l'app</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-tag"><i class="ti ti-users" aria-hidden="true"></i>About us</div>
+    <h1>Il nostro <span class="blue">team</span>.</h1>
+    <p>Sei studenti di design con 300 screenshot, 20 tab aperte e zero organizzazione. Ogni anno uguale. Fino a quando abbiamo deciso di fare qualcosa.</p>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card sc-dark">
+      <div class="stat-num">6</div>
+      <div class="stat-label">studenti di design stanchi di perdersi le cose più belle</div>
+    </div>
+    <div class="stat-card sc-lime">
+      <div class="stat-num">300</div>
+      <div class="stat-label">screenshot salvati e mai più ritrovati</div>
+    </div>
+    <div class="stat-card sc-blue">
+      <div class="stat-num">20</div>
+      <div class="stat-label">tab aperte contemporaneamente, nessuna utile</div>
+    </div>
+    <div class="stat-card sc-red">
+      <div class="stat-num">0</div>
+      <div class="stat-label">organizzazione. Fino a quando non abbiamo costruito Flow.</div>
+    </div>
+  </div>
+</div>
+
+<div class="manifesto">
+  <div class="manifesto-label">Il nostro<br>manifesto</div>
+  <div class="manifesto-body">
+    <div class="manifesto-quote">"Troppe cose da vedere e nessun modo davvero semplice per viverle tutte."</div>
+    <div class="manifesto-text">
+      Ogni anno, alla Design Week, ripetiamo le stesse frasi. Ci perdiamo mostre perché non le avevamo segnate. Troviamo lo screenshot di uno showroom tre settimane dopo che ha chiuso. Arriviamo tardi perché non sapevamo che c'era la fila.<br><br>
+      Siamo sei studenti di design. Conosciamo il problema meglio di chiunque altro perché <strong>siamo stati noi il problema</strong>.<br><br>
+      Così abbiamo smesso di lamentarci. Abbiamo costruito lo strumento che avremmo sempre voluto avere — semplice, veloce, globale. Un posto solo per tutto quello che succede durante la Design Week, in ogni città del mondo.
+    </div>
+  </div>
+</div>
+
+<div class="team-section">
+  <div class="team-header">
+    <h2>Chi siamo <span>davvero</span></h2>
+    <p>Sei persone. Una sola ossessione: il design vissuto, non solo guardato.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="avatar av1">A</div>
+      <div class="member-name">Arianna</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av2">M</div>
+      <div class="member-name">Marco</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av3">A</div>
+      <div class="member-name">Amaranta</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av4">E</div>
+      <div class="member-name">Elisa</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av5">S</div>
+      <div class="member-name">Salomi</div>
+    </div>
+    <div class="team-card">
+      <div class="avatar av6">S</div>
+      <div class="member-name">Sara</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <div class="cta-left">
+    <h2>Tutto il design<br>del mondo.<br><em>In tasca.</em></h2>
+    <p>Scarica Flow e vivi la Design Week come non hai mai fatto prima.</p>
+  </div>
+  <div class="cta-right">
+    <div class="store-btn" onclick="window.open('https://apps.apple.com','_blank')">
+      <i class="ti ti-brand-apple" aria-hidden="true"></i>
+      <div class="store-text">
+        <div class="small">Scarica su</div>
+        <div class="big">App Store</div>
+      </div>
+    </div>
+    <div class="store-btn lime" onclick="window.open('https://play.google.com/store','_blank')">
+      <i class="ti ti-brand-google-play" aria-hidden="true"></i>
+      <div class="store-text">
+        <div class="small">Disponibile su</div>
+        <div class="big">Google Play</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  <span>© 2026 Flow · La guida globale al design</span>
+  <span>Milano · Tokyo · New York · Berlino · Parigi</span>
+</div>
+
+</body>
+</html>
